@@ -1,16 +1,22 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LampSwitch : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Light _lamp;
+
     void Start()
     {
-        
+        // Находим компонент Light на этом же объекте и запоминаем его
+        _lamp = GetComponent<Light>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Keyboard.current.lKey.wasPressedThisFrame)
+        {
+            _lamp.enabled = !_lamp.enabled;
+            Debug.Log(_lamp.enabled ? "Свет включен" : "Свет выключен");
+        }
     }
 }
